@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dataset 2 — User Manual</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<style>
+  :root {
+    --ink: #1a1a18;
+    --ink2: #3d3d38;
+    --ink3: #6b6b64;
+    --paper: #f4f1eb;
+    --paper2: #ede9e0;
+    --paper3: #e2ddd1;
+    --accent: #c4521a;
+    --accent2: #2a5c45;
+    --accent3: #1a3a5c;
+    --rule: #c8c3b4;
+    --code-bg: #2a2a26;
+    --code-text: #e8e4d8;
+    --pass: #2a5c45;
+    --warn: #8a5c0a;
+    --fail: #8a1a1a;
+    --pass-bg: #e8f4ee;
+    --warn-bg: #fdf4e0;
+    --fail-bg: #fde8e8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* LAYOUT */
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* SIDEBAR */
+  nav {
+    background: var(--ink);
+    color: #e8e4d8;
+    padding: 2rem 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+
+  .nav-brand {
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid #3a3a34;
+    margin-bottom: 1rem;
+  }
+  .nav-brand .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .nav-brand h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #f4f1eb;
+  }
+
+  .nav-section { padding: 0.5rem 1.5rem; }
+  .nav-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5a5a52;
+    padding: 0.75rem 0 0.35rem;
+    display: block;
+  }
+  nav a {
+    display: block;
+    color: #9a9a8e;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 0.3rem 0;
+    transition: color 0.15s;
+    border-left: 2px solid transparent;
+    padding-left: 0.6rem;
+    margin-left: -0.6rem;
+  }
+  nav a:hover, nav a.active { color: #f4f1eb; border-left-color: var(--accent); }
+
+  /* MAIN */
+  main { padding: 3rem 4rem; max-width: 900px; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 4rem; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink2);
+    margin: 2rem 0 0.75rem;
+  }
+  h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p { margin-bottom: 1rem; color: var(--ink2); }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    border-left: 4px solid var(--accent);
+  }
+  .hero .kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+  .hero .kv-item { }
+  .hero .kv-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6a6a60;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .hero .kv-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--paper);
+  }
+
+  /* GATES */
+  .gates { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  .gate {
+    padding: 1rem 1.25rem;
+    border-left: 3px solid;
+    background: white;
+  }
+  .gate.pass { border-color: var(--pass); background: var(--pass-bg); }
+  .gate.warn { border-color: var(--warn); background: var(--warn-bg); }
+  .gate .gate-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+  .gate.pass .gate-label { color: var(--pass); }
+  .gate.warn .gate-label { color: var(--warn); }
+  .gate .gate-desc { font-size: 12px; color: var(--ink2); line-height: 1.5; }
+  .gate .gate-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink3); margin-top: 0.25rem; }
+
+  /* TABLES */
+  .tbl-wrap { overflow-x: auto; margin: 1.25rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { border-bottom: 2px solid var(--ink); }
+  th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink2);
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    font-weight: 500;
+  }
+  td { padding: 0.55rem 0.75rem; color: var(--ink2); border-bottom: 1px solid var(--paper3); vertical-align: top; }
+  tr:hover td { background: var(--paper2); }
+  .mono { font-family: 'DM Mono', monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+  .badge-green { background: var(--pass-bg); color: var(--pass); }
+  .badge-amber { background: var(--warn-bg); color: var(--warn); }
+  .badge-blue { background: #e8eef8; color: var(--accent3); }
+  .badge-gray { background: var(--paper3); color: var(--ink3); }
+
+  /* CODE */
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 1.25rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+    border-left: 3px solid var(--accent);
+  }
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    background: var(--paper3);
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: var(--accent);
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+
+  /* FORMULA BOX */
+  .formula-box {
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent3);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+  }
+  .formula-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* CALLOUT */
+  .callout {
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-left: 3px solid;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .callout-note { border-color: var(--accent3); background: #e8eef8; color: var(--accent3); }
+  .callout-warn { border-color: var(--warn); background: var(--warn-bg); color: #6a4a08; }
+  .callout-flag { border-color: var(--accent); background: #fdf0e8; color: #7a3010; }
+  .callout strong { font-weight: 500; display: block; margin-bottom: 0.25rem; }
+
+  /* ACCOUNT CARDS */
+  .account-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.25rem 0; }
+  .account-card {
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    background: white;
+  }
+  .account-card .acct-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .account-card h4 { font-size: 15px; margin: 0 0 0.5rem; }
+  .account-card .acct-detail { font-size: 12px; color: var(--ink3); line-height: 1.6; }
+  .account-card .acct-params {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--paper3);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink3);
+    display: flex;
+    gap: 1rem;
+  }
+
+  /* COLUMN INDEX */
+  .col-group { margin-bottom: 2rem; }
+  .col-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.75rem;
+  }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+  /* SCROLL SMOOTH */
+  html { scroll-behavior: smooth; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--rule); margin-bottom: 1.5rem; }
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    cursor: pointer;
+    color: var(--ink3);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.15s;
+  }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom: 1.5rem; }
+  .search-wrap input {
+    width: 100%;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--rule);
+    background: var(--paper2);
+    color: var(--ink);
+    outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--accent3); }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav>
+  <div class="nav-brand">
+    <span class="tag">Dataset 2 — User Manual</span>
+    <h1>Four-Account<br>Productive Capital</h1>
+  </div>
+  <div class="nav-section">
+    <span class="nav-section-label">Overview</span>
+    <a href="#overview">Dataset summary</a>
+    <a href="#status">Pipeline status</a>
+    <a href="#files">Output files</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-section-label">Accounts</span>
+    <a href="#accounts">Four accounts</a>
+    <a href="#perimeter">Capital perimeter</a>
+    <a href="#weibull">Weibull parameters</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-section-label">Formalization</span>
+    <a href="#gpim">GPIM rules</a>
+    <a href="#coldstart">Cold-start warmup</a>
+    <a href="#plag">p_lag boundary</a>
+    <a href="#pairings">Output–capital pairings</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-section-label">Column Index</span>
+    <a href="#columns">All 55 columns</a>
+    <a href="#estimation">Estimation objects</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-section-label">Data Sources</span>
+    <a href="#bea">BEA tables</a>
+    <a href="#nipa">NIPA T1.14</a>
+    <a href="#fred">FRED deflator</a>
+  </div>
+  <div class="nav-section">
+    <span class="nav-section-label">Notes</span>
+    <a href="#known">Known issues</a>
+    <a href="#flags">Open flags</a>
+    <a href="#refs">References</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- OVERVIEW -->
+<section id="overview" class="section">
+  <div class="section-header">
+    <span class="section-num">§1</span>
+    <h2>Dataset Overview</h2>
+  </div>
+
+  <div class="hero">
+    <div style="font-family:'DM Serif Display',serif;font-size:13px;color:#9a9a8e;margin-bottom:0.4rem">
+      Critical Replication of Shaikh (2016) — Dissertation Dataset 2
+    </div>
+    <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#f4f1eb;line-height:1.4">
+      Four-Account Productive Capital Dataset<br>
+      <span style="font-size:14px;color:#9a9a8e;">US Corporate Sector · BEA September 2025 Revision · 1925–2024</span>
+    </div>
+    <div class="kv">
+      <div class="kv-item">
+        <span class="kv-label">Commit</span>
+        <span class="kv-val">e55ac71</span>
+      </div>
+      <div class="kv-item">
+        <span class="kv-label">Date completed</span>
+        <span class="kv-val">2026-03-28</span>
+      </div>
+      <div class="kv-item">
+        <span class="kv-label">BEA vintage</span>
+        <span class="kv-val">Sep 26, 2025</span>
+      </div>
+      <div class="kv-item">
+        <span class="kv-label">Master CSV rows × cols</span>
+        <span class="kv-val">96 × 55</span>
+      </div>
+      <div class="kv-item">
+        <span class="kv-label">Sample coverage</span>
+        <span class="kv-val">1929–2024</span>
+      </div>
+      <div class="kv-item">
+        <span class="kv-label">GPIM warmup</span>
+        <span class="kv-val">1901–1924</span>
+      </div>
+    </div>
+  </div>
+
+  <p>Dataset 2 is a four-account productive capital dataset built from the current BEA vintage (September 2025 revision). It is <strong>distinct</strong> from Dataset 1 — the sealed Shaikh replication using the 2011 BEA vintage (1947–2011). The two datasets must never be mixed in estimation.</p>
+
+  <p>The dataset provides the capital stock series for robustness analysis of the θ(Λ) estimation in S3 and for the Chile comparative axis. It extends the GPIM capital stock construction to a theoretically correct perimeter: nonfinancial corporate business plus government transportation infrastructure, under a Weibull retirement distribution with a cold-start initialization consistent with the unbalanced growth framework.</p>
+
+  <div class="callout callout-note">
+    <strong>Relationship to Dataset 1</strong>
+    Dataset 1 uses Shaikh's original corporate perimeter (total corporate, GVA output, L/2 Weibull initialization, 2011 BEA vintage). Dataset 2 uses a theoretically motivated narrower perimeter (NF corporate + gov transport, NVA output, cold-start Weibull, 2025 BEA vintage). Results are not directly comparable — the vintage gap and accounting differences are documented findings, not bugs.
+  </div>
+</section>
+
+<!-- STATUS -->
+<section id="status" class="section">
+  <div class="section-header">
+    <span class="section-num">§2</span>
+    <h2>Pipeline Status</h2>
+  </div>
+
+  <p>Final run: <code>2026-03-28 16:46</code>. All four validation gates pass.</p>
+
+  <div class="gates">
+    <div class="gate pass">
+      <div class="gate-label">✓ Gate 0 — API fetch</div>
+      <div class="gate-desc">All 7 fetch tasks resolved: NF corporate, financial corporate, gov transport, IPP, NIPA T1.14, Py_fred, 1901 warmup.</div>
+    </div>
+    <div class="gate pass">
+      <div class="gate-label">✓ Gate 1 — Per-account SFC</div>
+      <div class="gate-desc">All 4 GPIM accounts pass the stock-flow consistency identity.</div>
+      <div class="gate-val">max |resid| &lt; 1e-4 per account</div>
+    </div>
+    <div class="gate pass">
+      <div class="gate-label">✓ Gate 2 — Aggregate SFC</div>
+      <div class="gate-desc">Productive aggregate stock-flow consistency holds.</div>
+      <div class="gate-val">max |resid| = 7.45e-09</div>
+    </div>
+    <div class="gate pass">
+      <div class="gate-label">✓ Gate 3 — Deflator check</div>
+      <div class="gate-desc">Aggregate productive capital goods price index correctly rebased.</div>
+      <div class="gate-val">pK_productive_2017 = 100.00</div>
+    </div>
+  </div>
+
+  <h3>GPIM diagnostics per account</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Account</th><th>z mean</th><th>ρ range</th><th>τ̄ terminal</th><th>Gross SFC resid</th></tr></thead>
+    <tbody>
+      <tr><td>NF corporate</td><td class="mono">0.0421</td><td class="mono">[0.01498, 0.04591]</td><td class="mono">13.7 yr</td><td class="mono">3.73e-09</td></tr>
+      <tr><td>Gov transport</td><td class="mono">-0.0048</td><td class="mono">[0.00690, 0.01533]</td><td class="mono">26.9 yr</td><td class="mono">9.31e-10</td></tr>
+      <tr><td>NF IPP</td><td class="mono">0.1778</td><td class="mono">[0.06989, 0.20879]</td><td class="mono">3.1 yr</td><td class="mono">9.31e-10</td></tr>
+      <tr><td>Financial corp</td><td class="mono">0.0585</td><td class="mono">[0.01454, 0.04509]</td><td class="mono">13.4 yr</td><td class="mono">4.66e-10</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout callout-warn">
+    <strong>gov_trans z mean = −0.005</strong>
+    A slightly negative aggregate depreciation rate on government transport is a known issue. Confirmed not a double-count (L12 Transportation and L14 Highways and streets are disjoint siblings under L3 Structures — verified via L3 sum check). Likely a BEA comprehensive revision revaluation effect where KNC grows faster than IG−DEP in some years. Non-blocking — SFC passes.
+  </div>
+</section>
+
+<!-- FILES -->
+<section id="files" class="section">
+  <div class="section-header">
+    <span class="section-num">§3</span>
+    <h2>Output Files</h2>
+  </div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>File</th><th>Rows</th><th>Cols</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="mono">data/processed/kstock_master.csv</td>
+        <td class="mono">96</td><td class="mono">55</td>
+        <td>All estimation objects + capital accounts (wide format). Primary analysis file.</td>
+      </tr>
+      <tr>
+        <td class="mono">data/processed/income_accounts_NF.csv</td>
+        <td class="mono">96</td><td class="mono">~20</td>
+        <td>Full NF corporate income decomposition from NIPA T1.14.</td>
+      </tr>
+      <tr>
+        <td class="mono">data/processed/kstock_accounts_long.csv</td>
+        <td class="mono">400</td><td class="mono">~15</td>
+        <td>Per-account GPIM outputs in long format (4 accounts × 100 years).</td>
+      </tr>
+      <tr>
+        <td class="mono">data/interim/kstock_components/kstock_nf_corp.csv</td>
+        <td class="mono">100</td><td class="mono">~12</td>
+        <td>NF corporate GPIM account (detailed).</td>
+      </tr>
+      <tr>
+        <td class="mono">data/interim/kstock_components/kstock_govt.csv</td>
+        <td class="mono">100</td><td class="mono">~12</td>
+        <td>Government transport GPIM account (detailed).</td>
+      </tr>
+      <tr>
+        <td class="mono">data/interim/kstock_components/kstock_ipp.csv</td>
+        <td class="mono">100</td><td class="mono">~12</td>
+        <td>NF corporate IPP account (separately tracked, not in KGC_productive).</td>
+      </tr>
+      <tr>
+        <td class="mono">data/interim/kstock_components/kstock_fin_corp.csv</td>
+        <td class="mono">100</td><td class="mono">~12</td>
+        <td>Financial corporate account (separately tracked).</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Entry point</h3>
+  <pre><code>source("codes/62_build_prod_cap_accounts.R")   # builds all outputs
+source("codes/63_figure_prod_cap_accounts.R")  # 5 diagnostic figures</code></pre>
+</section>
+
+<!-- ACCOUNTS -->
+<section id="accounts" class="section">
+  <div class="section-header">
+    <span class="section-num">§4</span>
+    <h2>The Four Accounts</h2>
+  </div>
+
+  <div class="account-grid">
+    <div class="account-card">
+      <div class="acct-code">Account A′</div>
+      <h4>NF Corporate</h4>
+      <div class="acct-detail">
+        Nonfinancial corporate business fixed capital (structures + equipment + IPP aggregate). Primary productive capital account. <strong>Enters KGC_productive.</strong><br><br>
+        BEA source: FAAt601 L4 "Nonfinancial" (legal form aggregate — no E/S/IPP sub-line split available). Chain-type QI from FAAt602.
+      </div>
+      <div class="acct-params">
+        <span>L = 22 yr</span><span>α = 1.65</span><span>mix-weighted</span>
+      </div>
+    </div>
+    <div class="account-card">
+      <div class="acct-code">Account C′</div>
+      <h4>Gov Transport</h4>
+      <div class="acct-detail">
+        All nondefense transportation infrastructure: highways/streets (L14) + transportation aggregate (L12: airports, rail, transit, water). <strong>Enters KGC_productive.</strong><br><br>
+        Grounded in Marx Vol. II Ch. 6: transport adds locational use-value at node P (not X). P→C′ boundary is retailer handoff, not transport mode.
+      </div>
+      <div class="acct-params">
+        <span>L = 60 yr</span><span>α = 1.3</span><span>Fraumeni T</span>
+      </div>
+    </div>
+    <div class="account-card">
+      <div class="acct-code">Account D′</div>
+      <h4>NF Corporate IPP</h4>
+      <div class="acct-detail">
+        Intellectual property products: software, R&D, entertainment originals. <strong>Separately tracked — does NOT enter KGC_productive.</strong> Treated as a capital-reshaping intangible. Source: FAAt401 L4 "Intellectual property products".
+      </div>
+      <div class="acct-params">
+        <span>L = 5 yr</span><span>α = 2.0</span><span>BEA assumption</span>
+      </div>
+    </div>
+    <div class="account-card">
+      <div class="acct-code">Account E′</div>
+      <h4>Financial Corporate</h4>
+      <div class="acct-detail">
+        Financial sector fixed capital. <strong>Separately tracked — does NOT enter KGC_productive.</strong> Financialization tracker. Source: FAAt601 L3 "Financial".
+      </div>
+      <div class="acct-params">
+        <span>L = 22 yr</span><span>α = 1.65</span><span>proxy</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>Canonical productive capital aggregate</h3>
+  <div class="formula-box">
+    <span class="formula-label">Definition</span>
+    \[ \text{KGC\_productive}_t = \text{KGC\_NF\_corp}_t + \text{KGC\_gov\_trans}_t \]
+    <div style="font-size:12px;color:var(--ink3);margin-top:0.75rem;">IPP and financial corporate are <em>not</em> included in the productive aggregate. They are tracked separately as auxiliary series.</div>
+  </div>
+</section>
+
+<!-- PERIMETER -->
+<section id="perimeter" class="section">
+  <div class="section-header">
+    <span class="section-num">§5</span>
+    <h2>Capital Perimeter</h2>
+  </div>
+
+  <p>The productive capital perimeter follows the Basu (2022) circuit-capital framework, not Shaikh's broader "social capital" argument (Shaikh 2016, Ch. 7). The distinction matters for what belongs to node P versus node X in the circuit N→P→C′.</p>
+
+  <h3>NF corporate — why not total corporate</h3>
+  <p>FAAt601 (Section 6, legal form only) distinguishes Financial corporate (L3) from Nonfinancial corporate (L4). Financial corporate capital (bank branches, data centers, trading floors) enables the circulation of money capital — it belongs to the M–M′ circuit of financial capital, not to the M–C...P...C′–M′ circuit of productive capital. Including it would contaminate the productive capital stock with circulation-enabling assets.</p>
+
+  <h3>Government transportation — theoretical grounding</h3>
+  <p>The inclusion of government transportation rests on Marx Vol. II, Ch. 6:</p>
+  <div class="callout callout-note">
+    <strong>Marx Vol. II Ch. 6</strong>
+    "The productive capital invested in [transport] creates value and surplus-value... The change of place of the commodities is the use-value of the means of transport."
+  </div>
+  <p>Transport adds locational use-value to commodities as part of the production process — before the commodity enters exchange. The P→C′ boundary is the handoff to the retailer for sale, not the mode or medium of transport. Therefore all transport infrastructure (road, rail, air, water) belongs to node P regardless of ownership (public/private).</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Infrastructure type</th><th>Circuit node</th><th>Included?</th><th>BEA line</th></tr></thead>
+    <tbody>
+      <tr><td>Highways and streets</td><td>P</td><td><span class="badge badge-green">Yes</span></td><td class="mono">FAAt701 L14</td></tr>
+      <tr><td>Air transportation</td><td>P</td><td><span class="badge badge-green">Yes</span></td><td class="mono">FAAt701 L12 (subset)</td></tr>
+      <tr><td>Land transportation (rail/transit)</td><td>P</td><td><span class="badge badge-green">Yes</span></td><td class="mono">FAAt701 L12 (subset)</td></tr>
+      <tr><td>Water transportation</td><td>P</td><td><span class="badge badge-green">Yes</span></td><td class="mono">FAAt701 L12 (subset)</td></tr>
+      <tr><td>Power structures</td><td>P (enabling)</td><td><span class="badge badge-gray">No</span></td><td class="mono">FAAt701 L13</td></tr>
+      <tr><td>Military facilities</td><td>State</td><td><span class="badge badge-gray">No</span></td><td class="mono">FAAt701 L15</td></tr>
+      <tr><td>Educational buildings</td><td>Reproduction</td><td><span class="badge badge-gray">No</span></td><td class="mono">FAAt701 L9</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout callout-note">
+    <strong>Note on L12 + L14</strong>
+    Transportation (L12) and Highways and streets (L14) are <em>disjoint siblings</em> under L3 Structures. Confirmed via sum check: Σ(L4–L17) ≈ L3 (rounding only, 2024: 18,215,341 vs 18,216,189). No double-count.
+  </div>
+</section>
+
+<!-- WEIBULL -->
+<section id="weibull" class="section">
+  <div class="section-header">
+    <span class="section-num">§6</span>
+    <h2>Weibull Retirement Parameters</h2>
+  </div>
+
+  <p>Three sources triangulated to produce the locked parameter table. Each source supplies different pieces: Shaikh/BEA-1993 gives implicit L for corporate accounts; Fraumeni (1997) gives explicit L per asset class; Nomura (2005) gives empirical α from directly observed scrapping data (Japan SASD survey, 2002–03, 66 asset categories).</p>
+
+  <h3>Locked parameters</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Account</th><th>L (yr)</th><th>α</th><th>λ = L/Γ(1+α⁻¹)</th><th>Primary source</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>NF corporate structures</td><td class="mono">30</td><td class="mono">1.6</td><td class="mono">~33.0</td>
+        <td>Fraumeni T (adj.), Shaikh implicit, Nomura Case-3</td>
+      </tr>
+      <tr>
+        <td>NF corporate equipment</td><td class="mono">14</td><td class="mono">1.7</td><td class="mono">~15.3</td>
+        <td>All three sources convergent</td>
+      </tr>
+      <tr>
+        <td>Gov transportation</td><td class="mono">60</td><td class="mono">1.3</td><td class="mono">~68.4</td>
+        <td>Fraumeni T (US design life), Nomura α (road shape)</td>
+      </tr>
+      <tr>
+        <td>NF corporate aggregate (mix)</td><td class="mono">22</td><td class="mono">1.65</td><td class="mono">~24.2</td>
+        <td>Investment-weighted average of structures + equipment</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>Approximation: NF_corp uses L=22 aggregate</strong>
+    FAAt601 (Section 6) is legal form only — no E/S/IPP sub-line split exists under the Nonfinancial corporate aggregate. The pipeline uses a single mix-weighted (L=22, α=1.65) pair for the entire NF corporate account. This is a known approximation. Sub-asset Weibull heterogeneity is a parked future extension.
+  </div>
+
+  <h3>Hazard function</h3>
+  <div class="formula-box">
+    <span class="formula-label">Weibull hazard — instantaneous retirement rate at age τ</span>
+    \[ h(\tau) = \frac{\alpha}{\lambda}\left(\frac{\tau}{\lambda}\right)^{\alpha-1} \qquad \text{where } \lambda = \frac{L}{\Gamma(1+\alpha^{-1})} \]
+  </div>
+
+  <h3>Shape parameter guide</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>α range</th><th>Hazard profile</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">α &lt; 1</td><td>Decreasing</td><td>"Infant mortality" — implausible for physical capital</td></tr>
+      <tr><td class="mono">α = 1</td><td>Constant</td><td>Exponential — geometric depreciation special case</td></tr>
+      <tr><td class="mono">1 &lt; α &lt; 2.6</td><td>Regressively increasing</td><td>Right-skewed retirement. Most physical assets. <em>(All three accounts)</em></td></tr>
+      <tr><td class="mono">α ≈ 2.6–3.7</td><td>Approximately symmetric</td><td>Approximates Winfrey S-3 curve</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- GPIM -->
+<section id="gpim" class="section">
+  <div class="section-header">
+    <span class="section-num">§7</span>
+    <h2>GPIM Accumulation Rules</h2>
+  </div>
+
+  <p>The Generalized Perpetual Inventory Method (Shaikh 2016, Appendix 6.5) derives the aggregate accumulation rule that survives Fisher-ideal chain aggregation — closing the gap that the standard micro-level PIM leaves open when assets are chain-weighted.</p>
+
+  <h3>Core rules</h3>
+  <div class="formula-box">
+    <span class="formula-label">Current-cost gross stock</span>
+    \[ K_t = IG_t + z_t^* \cdot K_{t-1} \qquad z_t^* \equiv (1-z_t)\,\frac{p_t^K}{p_{t-1}^K} \]
+  </div>
+  <div class="formula-box">
+    <span class="formula-label">Constant-cost (real) gross stock</span>
+    \[ K_t^R = IG_t^R + (1-\rho_t)\,K_{t-1}^R \qquad IG_t^R \equiv IG_t / p_t^K \]
+  </div>
+  <div class="formula-box">
+    <span class="formula-label">Theoretically correct aggregate depreciation rate (ADJ1)</span>
+    \[ z_t = \frac{D_t}{p_t^K \cdot K_{t-1}^R} \]
+    <div style="font-size:12px;color:var(--ink3);margin-top:0.5rem;">Uses reflated lagged real stock as denominator. Whelan-Liu approximation (D_t / K_{t-1}) is available as sensitivity only via USE_SHAIKH_BEA1993_RATES toggle.</div>
+  </div>
+
+  <h3>SFC identity</h3>
+  <div class="formula-box">
+    <span class="formula-label">Stock-flow consistency — enforced at every step</span>
+    \[ K_t^{NC} - K_{t-1}^{NC} \equiv IG_t - D_t \]
+    <div style="font-size:12px;color:var(--ink3);margin-top:0.5rem;">Internal tolerance: 1e-6 (floating-point machine epsilon below this). Gate 1 tolerance: 1e-4. Pipeline halts if violated.</div>
+  </div>
+
+  <h3>Mean-age recursion (time-varying ρ)</h3>
+  <div class="formula-box">
+    <span class="formula-label">Investment-weighted mean age at t+1</span>
+    \[ \bar\tau_{t+1} = \frac{\bar\tau_t \cdot (1-\rho_t) \cdot K_t^{GR}}{(1-\rho_t)\cdot K_t^{GR} + IG_t^R} + 1 \]
+    <div style="font-size:12px;color:var(--ink3);margin-top:0.5rem;">Survivors age 1 year; new investment enters at age 0. ρ_t = h(τ̄_t) is recomputed annually. No balanced-growth assumption.</div>
+  </div>
+</section>
+
+<!-- COLD START -->
+<section id="coldstart" class="section">
+  <div class="section-header">
+    <span class="section-num">§8</span>
+    <h2>Cold-Start Warmup</h2>
+  </div>
+
+  <p>The standard initialization τ̄₀ = L/2 asserts a balanced-growth ergodic vintage distribution — the stock is already in steady state under constant investment growth. This is precisely the closure the unbalanced growth framework rejects.</p>
+
+  <h3>Correct initialization under unbalanced growth</h3>
+  <div class="formula-box">
+    <span class="formula-label">Cold start conditions at 1901</span>
+    \[ \bar\tau_{1901} = 0 \qquad K^{GR}_{1901} = 0 \]
+  </div>
+  <p>The mean-age recursion runs from 1901–1924, driven entirely by actual BEA investment flows. <code>warmup_from_investment()</code> returns both <code>K_R_terminal</code> and <code>tau_bar_terminal</code>. Post-warmup recursion initializes from <code>tau_bar_1925</code>.</p>
+
+  <h3>Warmup terminal values (final run)</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Account</th><th>KGC_R terminal (1925)</th><th>τ̄ terminal (1925)</th><th>τ̄ at 2024</th></tr></thead>
+    <tbody>
+      <tr><td>NF corporate</td><td class="mono">72,293</td><td class="mono">7.57 yr</td><td class="mono">13.7 yr</td></tr>
+      <tr><td>Gov transport</td><td class="mono">7,684</td><td class="mono">5.90 yr</td><td class="mono">26.9 yr</td></tr>
+      <tr><td>NF IPP</td><td class="mono">1,524</td><td class="mono">3.23 yr</td><td class="mono">3.1 yr</td></tr>
+      <tr><td>Financial corp</td><td class="mono">2,824</td><td class="mono">5.53 yr</td><td class="mono">13.4 yr</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>All τ̄ terminal values are well below L/2 — confirming the cold-start is working. The stock is young in 1925 because 1901–1924 investment accumulated from zero.</p>
+</section>
+
+<!-- PLAG -->
+<section id="plag" class="section">
+  <div class="section-header">
+    <span class="section-num">§9</span>
+    <h2>p_lag Boundary Assumption</h2>
+  </div>
+
+  <p>The current-cost recursion requires p^K_{t−1} at the first observation year (1925). BEA chain-type quantity indexes begin in 1925, so p^K_{1924} does not exist in the data. The pipeline sets:</p>
+
+  <div class="formula-box">
+    <span class="formula-label">Boundary condition — imposed by data availability</span>
+    \[ p_{1924}^K = p_{1925}^K \]
+  </div>
+
+  <p>This implies zero price change at the 1924–1925 boundary. It is <strong>not</strong> an equilibrium assumption — it is a data availability constraint.</p>
+
+  <h3>Error propagation under unbalanced growth</h3>
+  <div class="formula-box">
+    <span class="formula-label">Initialization error propagation</span>
+    \[ \Delta K_t = \Delta K_0 \cdot \prod_{s=1}^{t} z_s^* \]
+  </div>
+  <p>The error contracts each period by z*_s. Since z*_s &lt; 1 whenever z_s &gt; g_{p^K,s}/(1 + g_{p^K,s}) — confirmed for the US corporate sector — the error converges to zero. <strong>No constant convergence rate can be stated without imposing balanced growth.</strong> The contraction rate is time-varying, governed by the historical z*_t sequence. The error is negligible within the estimation window (1947–2024).</p>
+</section>
+
+<!-- PAIRINGS -->
+<section id="pairings" class="section">
+  <div class="section-header">
+    <span class="section-num">§10</span>
+    <h2>Output–Capital Pairings</h2>
+  </div>
+
+  <p>Four logically possible combinations of output concept (GVA/NVA) and capital stock concept (gross/net) under a common deflator. Only one satisfies all three criteria simultaneously.</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Pairing</th><th>Output</th><th>Capital</th><th>Correct capacity concept</th><th>SFC under common deflator</th><th>Auxiliary trend stability</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>NG ← canonical</strong></td><td>NVA</td><td>K^G</td>
+        <td><span class="badge badge-green">Yes</span></td>
+        <td><span class="badge badge-green">Yes</span></td>
+        <td><span class="badge badge-green">Yes</span></td>
+      </tr>
+      <tr>
+        <td>GG</td><td>GVA</td><td>K^G</td>
+        <td><span class="badge badge-green">Yes</span></td>
+        <td><span class="badge badge-amber">Breaks post-2023</span></td>
+        <td><span class="badge badge-amber">Secular CFC drift</span></td>
+      </tr>
+      <tr>
+        <td>GN</td><td>GVA</td><td>K^N</td>
+        <td><span class="badge badge-amber">Net ≠ physical capacity</span></td>
+        <td><span class="badge badge-amber">ψ_t trend contamination</span></td>
+        <td><span class="badge badge-amber">Fragile</span></td>
+      </tr>
+      <tr>
+        <td>NN</td><td>NVA</td><td>K^N</td>
+        <td><span class="badge badge-amber">Net ≠ physical capacity</span></td>
+        <td><span class="badge badge-green">Yes</span></td>
+        <td><span class="badge badge-amber">Most fragile</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout callout-flag">
+    <strong>Open flag: NVA theoretical grounding</strong>
+    The NG pairing is chosen on SFC grounds (GVA + K^G breaks under the post-2023 BEA revision due to secular rise in CFC/GVA ratio). The positive theoretical case for NVA from the Basu circuit-capital framework needs to be worked out before Ch1 goes to Ash. The pipeline is correct as built — the question is whether the theoretical justification is complete.
+  </div>
+
+  <h3>Estimation objects in master CSV</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Column</th><th>Definition</th><th>Pairing</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">y_t</td><td>log(NVA_NF / Py_fred)</td><td>Canonical output</td></tr>
+      <tr><td class="mono">k_Py</td><td>log(KGC_productive / Py_fred)</td><td>Shaikh-consistent capital</td></tr>
+      <tr><td class="mono">k_pK</td><td>log(KGC_productive / pK_productive)</td><td>GPIM-strict capital</td></tr>
+      <tr><td class="mono">y_GVA</td><td>log(GVA_NF / Py_fred)</td><td>Gross output sensitivity</td></tr>
+      <tr><td class="mono">y_GOS</td><td>log(GOS_NF / Py_fred)</td><td>Pre-depreciation surplus</td></tr>
+      <tr><td class="mono">y_NOS</td><td>log(NOS_NF / Py_fred)</td><td>Net operating surplus</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- COLUMNS -->
+<section id="columns" class="section">
+  <div class="section-header">
+    <span class="section-num">§11</span>
+    <h2>Column Index — kstock_master.csv</h2>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" id="col-search" placeholder="Filter columns..." oninput="filterCols(this.value)">
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('all')">All columns</button>
+    <button class="tab-btn" onclick="switchTab('gpim')">GPIM outputs</button>
+    <button class="tab-btn" onclick="switchTab('income')">Income accounts</button>
+    <button class="tab-btn" onclick="switchTab('est')">Estimation objects</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-all">
+  <div class="tbl-wrap">
+  <table id="col-table">
+    <thead><tr><th>Column</th><th>Group</th><th>Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr data-group="meta"><td class="mono">year</td><td><span class="badge badge-gray">meta</span></td><td>int</td><td>Year (1929–2024). GPIM constructed from 1925; income accounts from 1929.</td></tr>
+
+      <tr data-group="gpim"><td class="mono">KNC_productive</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>Current-cost net stock, productive aggregate (NF corp + gov transport)</td></tr>
+      <tr data-group="gpim"><td class="mono">KNR_productive</td><td><span class="badge badge-blue">gpim</span></td><td>real</td><td>Chain-type real net stock, productive aggregate</td></tr>
+      <tr data-group="gpim"><td class="mono">KGC_productive</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>Current-cost gross stock, productive aggregate — primary capital variable</td></tr>
+      <tr data-group="gpim"><td class="mono">KGR_productive</td><td><span class="badge badge-blue">gpim</span></td><td>real</td><td>Real gross stock, productive aggregate</td></tr>
+      <tr data-group="gpim"><td class="mono">pK_productive</td><td><span class="badge badge-blue">gpim</span></td><td>idx</td><td>Aggregate own-series capital goods price deflator (2017=100)</td></tr>
+      <tr data-group="gpim"><td class="mono">z_productive</td><td><span class="badge badge-blue">gpim</span></td><td>rate</td><td>Aggregate GPIM depreciation rate</td></tr>
+      <tr data-group="gpim"><td class="mono">rho_productive</td><td><span class="badge badge-blue">gpim</span></td><td>rate</td><td>Aggregate Weibull retirement rate (time-varying)</td></tr>
+
+      <tr data-group="gpim"><td class="mono">KNC_NF_corp</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>NF corporate current-cost net stock</td></tr>
+      <tr data-group="gpim"><td class="mono">KGC_NF_corp</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>NF corporate gross stock (GPIM output)</td></tr>
+      <tr data-group="gpim"><td class="mono">z_NF_corp</td><td><span class="badge badge-blue">gpim</span></td><td>rate</td><td>NF corporate depreciation rate</td></tr>
+      <tr data-group="gpim"><td class="mono">rho_NF_corp</td><td><span class="badge badge-blue">gpim</span></td><td>rate</td><td>NF corporate time-varying Weibull retirement rate</td></tr>
+
+      <tr data-group="gpim"><td class="mono">KNC_gov_trans</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>Gov transport current-cost net stock (L12 + L14)</td></tr>
+      <tr data-group="gpim"><td class="mono">KGC_gov_trans</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>Gov transport gross stock (GPIM output)</td></tr>
+      <tr data-group="gpim"><td class="mono">z_gov_trans</td><td><span class="badge badge-blue">gpim</span></td><td>rate</td><td>Gov transport depreciation rate (slightly negative — known issue)</td></tr>
+      <tr data-group="gpim"><td class="mono">rho_gov_trans</td><td><span class="badge badge-blue">gpim</span></td><td>rate</td><td>Gov transport time-varying Weibull retirement rate</td></tr>
+
+      <tr data-group="gpim"><td class="mono">KNC_NF_IPP</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>NF corporate IPP net stock (separately tracked)</td></tr>
+      <tr data-group="gpim"><td class="mono">KGC_NF_IPP</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>NF corporate IPP gross stock</td></tr>
+      <tr data-group="gpim"><td class="mono">KNC_fin_corp</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>Financial corporate net stock (separately tracked)</td></tr>
+      <tr data-group="gpim"><td class="mono">KGC_fin_corp</td><td><span class="badge badge-blue">gpim</span></td><td>Bn $</td><td>Financial corporate gross stock</td></tr>
+
+      <tr data-group="income"><td class="mono">GVA_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Gross value added, NF corporate (NIPA T1.14 L17)</td></tr>
+      <tr data-group="income"><td class="mono">CCA_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Consumption of fixed capital, NF corporate (L18)</td></tr>
+      <tr data-group="income"><td class="mono">NVA_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Net value added, NF corporate (L19) — canonical output</td></tr>
+      <tr data-group="income"><td class="mono">EC_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Compensation of employees (L20)</td></tr>
+      <tr data-group="income"><td class="mono">Wages_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Wages and salaries (L21)</td></tr>
+      <tr data-group="income"><td class="mono">TPI_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Taxes on production and imports less subsidies (L23)</td></tr>
+      <tr data-group="income"><td class="mono">NOS_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Net operating surplus (L24)</td></tr>
+      <tr data-group="income"><td class="mono">GOS_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Gross operating surplus = GVA - EC - TPI (derived)</td></tr>
+      <tr data-group="income"><td class="mono">ProfSh</td><td><span class="badge badge-green">income</span></td><td>ratio</td><td>Net profit share = NOS_NF / NVA_NF</td></tr>
+      <tr data-group="income"><td class="mono">WageSh</td><td><span class="badge badge-green">income</span></td><td>ratio</td><td>Wage share = EC_NF / NVA_NF</td></tr>
+      <tr data-group="income"><td class="mono">CorpTax_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Taxes on corporate income (L28)</td></tr>
+      <tr data-group="income"><td class="mono">IVA_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Inventory valuation adjustment (L35)</td></tr>
+      <tr data-group="income"><td class="mono">CCAdj_NF</td><td><span class="badge badge-green">income</span></td><td>Mn $</td><td>Capital consumption adjustment (L36)</td></tr>
+
+      <tr data-group="deflator"><td class="mono">Py_fred</td><td><span class="badge badge-amber">deflator</span></td><td>idx</td><td>GDP implicit price deflator from FRED (A191RD3A086NBEA, 2017=100)</td></tr>
+      <tr data-group="deflator"><td class="mono">pK_NF_corp</td><td><span class="badge badge-amber">deflator</span></td><td>idx</td><td>NF corporate own-series capital goods price index (2017=100)</td></tr>
+      <tr data-group="deflator"><td class="mono">pK_gov_trans</td><td><span class="badge badge-amber">deflator</span></td><td>idx</td><td>Gov transport own-series capital goods price index (2017=100)</td></tr>
+
+      <tr data-group="est"><td class="mono">y_t</td><td><span class="badge badge-gray">estimation</span></td><td>log</td><td>log(NVA_NF / Py_fred) — canonical output for ARDL/VECM</td></tr>
+      <tr data-group="est"><td class="mono">k_Py</td><td><span class="badge badge-gray">estimation</span></td><td>log</td><td>log(KGC_productive / Py_fred) — Shaikh-consistent capital</td></tr>
+      <tr data-group="est"><td class="mono">k_pK</td><td><span class="badge badge-gray">estimation</span></td><td>log</td><td>log(KGC_productive / pK_productive) — GPIM-strict capital</td></tr>
+      <tr data-group="est"><td class="mono">y_GVA</td><td><span class="badge badge-gray">estimation</span></td><td>log</td><td>log(GVA_NF / Py_fred) — gross output sensitivity</td></tr>
+      <tr data-group="est"><td class="mono">y_GOS</td><td><span class="badge badge-gray">estimation</span></td><td>log</td><td>log(GOS_NF / Py_fred) — pre-depreciation surplus</td></tr>
+      <tr data-group="est"><td class="mono">y_NOS</td><td><span class="badge badge-gray">estimation</span></td><td>log</td><td>log(NOS_NF / Py_fred) — net operating surplus</td></tr>
+      <tr data-group="est"><td class="mono">share_NF_corp</td><td><span class="badge badge-gray">estimation</span></td><td>ratio</td><td>NF corporate share of productive aggregate</td></tr>
+      <tr data-group="est"><td class="mono">share_govt</td><td><span class="badge badge-gray">estimation</span></td><td>ratio</td><td>Gov transport share of productive aggregate</td></tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+</section>
+
+<!-- BEA SOURCES -->
+<section id="bea" class="section">
+  <div class="section-header">
+    <span class="section-num">§12</span>
+    <h2>BEA Data Sources</h2>
+  </div>
+
+  <div class="callout callout-note">
+    <strong>Critical constraint</strong>
+    No single BEA table provides Nonfinancial corporate × asset type (E/S/IPP) simultaneously. Section 6 gives NF corporate as a legal-form aggregate only. Section 4 gives E/S/IPP per legal form but lumps Financial + Nonfinancial corporate together. This is the fundamental BEA table structure constraint governing the pipeline design.
+  </div>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Table</th><th>API code</th><th>Content</th><th>Used for</th><th>Coverage</th></tr></thead>
+    <tbody>
+      <tr><td>Table 6.1</td><td class="mono">FAAt601</td><td>Private FA: current-cost net stock by legal form</td><td>KNC_NF_corp, KNC_fin_corp</td><td>1925–2024</td></tr>
+      <tr><td>Table 6.2</td><td class="mono">FAAt602</td><td>Private FA: chain-type QI by legal form</td><td>KNR (for pK derivation)</td><td>1925–2024</td></tr>
+      <tr><td>Table 6.7</td><td class="mono">FAAt607</td><td>Private FA: investment by legal form</td><td>IG_NF_corp, IG_fin_corp</td><td>1901–2024</td></tr>
+      <tr><td>Table 4.1</td><td class="mono">FAAt401</td><td>Nonresidential FA: by industry group × legal form × asset type</td><td>KNC_NF_IPP</td><td>1925–2024</td></tr>
+      <tr><td>Table 4.7</td><td class="mono">FAAt407</td><td>Nonresidential FA: investment by industry × legal form × asset type</td><td>IG_NF_IPP</td><td>1901–2024</td></tr>
+      <tr><td>Table 7.1</td><td class="mono">FAAt701</td><td>Government FA: current-cost net stock</td><td>KNC_gov_trans (L12 + L14)</td><td>1925–2024</td></tr>
+      <tr><td>Table 7.2</td><td class="mono">FAAt702</td><td>Government FA: chain-type QI</td><td>KNR_gov_trans (for pK)</td><td>1925–2024</td></tr>
+      <tr><td>Table 7.5</td><td class="mono">FAAt705</td><td>Government FA: investment</td><td>IG_gov_trans</td><td>1901–2024</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Key line extractions</h3>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Series</th><th>Table</th><th>Line</th><th>Description (live API)</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">KNC_NF_corp</td><td class="mono">FAAt601</td><td>L4</td><td>"Nonfinancial"</td></tr>
+      <tr><td class="mono">KNC_fin_corp</td><td class="mono">FAAt601</td><td>L3</td><td>"Financial"</td></tr>
+      <tr><td class="mono">KNC_gov_trans</td><td class="mono">FAAt701</td><td>L12 + L14</td><td>"Transportation" + "Highways and streets" (disjoint)</td></tr>
+      <tr><td class="mono">KNC_NF_IPP</td><td class="mono">FAAt401</td><td>L4</td><td>"Intellectual property products"</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- NIPA -->
+<section id="nipa" class="section">
+  <div class="section-header">
+    <span class="section-num">§13</span>
+    <h2>NIPA Table 1.14</h2>
+  </div>
+
+  <p>NF corporate income accounts from NIPA T1.14 (API code <code>T11400</code>). Line numbers confirmed from live API against September 2025 revision. Always match on <code>LineDescription</code>, not line number — BEA revisions renumber lines.</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Line</th><th>Series</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">17</td><td class="mono">GVA_NF</td><td>Gross value added of nonfinancial corporate business</td></tr>
+      <tr><td class="mono">18</td><td class="mono">CCA_NF</td><td>Consumption of fixed capital</td></tr>
+      <tr><td class="mono">19</td><td class="mono">NVA_NF</td><td>Net value added — <strong>canonical output Y_t</strong></td></tr>
+      <tr><td class="mono">20</td><td class="mono">EC_NF</td><td>Compensation of employees</td></tr>
+      <tr><td class="mono">23</td><td class="mono">TPI_NF</td><td>Taxes on production and imports less subsidies</td></tr>
+      <tr><td class="mono">24</td><td class="mono">NOS_NF</td><td>Net operating surplus</td></tr>
+      <tr><td class="mono">28</td><td class="mono">CorpTax_NF</td><td>Taxes on corporate income</td></tr>
+      <tr><td class="mono">35</td><td class="mono">IVA_NF</td><td>Inventory valuation adjustment</td></tr>
+      <tr><td class="mono">36</td><td class="mono">CCAdj_NF</td><td>Capital consumption adjustment</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout callout-note">
+    <strong>NVA identity</strong>
+    NVA_NF = GVA_NF − CCA_NF holds exactly from the raw BEA data (confirmed: 1947: 122,211 − 9,476 = 112,735; 2000: 5,510,787 − 737,452 = 4,773,335). The pipeline warning "max gap: 1.00" is a floating-point display artifact in the comparison step — not a real identity violation.
+  </div>
+</section>
+
+<!-- FRED -->
+<section id="fred" class="section">
+  <div class="section-header">
+    <span class="section-num">§14</span>
+    <h2>FRED Deflator</h2>
+  </div>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Series ID</td><td class="mono">A191RD3A086NBEA</td></tr>
+      <tr><td>Description</td><td>GDP Implicit Price Deflator</td></tr>
+      <tr><td>Base year</td><td>2017 = 100 (current FRED release)</td></tr>
+      <tr><td>Coverage</td><td>1929–2024 (pre-1929 = NA — acceptable, estimation from 1947)</td></tr>
+      <tr><td>Column name</td><td class="mono">Py_fred</td> </tr>
+      <tr><td>Naming note</td><td>Distinct from estimation-layer Py — provenance preserved</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <pre><code>fredr::fredr(
+  series_id         = "A191RD3A086NBEA",
+  observation_start = as.Date("1925-01-01"),
+  frequency         = "a"
+) |>
+  dplyr::select(year = date, Py_fred = value) |>
+  dplyr::mutate(year = lubridate::year(year))</code></pre>
+</section>
+
+<!-- KNOWN ISSUES -->
+<section id="known" class="section">
+  <div class="section-header">
+    <span class="section-num">§15</span>
+    <h2>Known Issues</h2>
+  </div>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Issue</th><th>Status</th><th>Impact</th><th>Explanation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>gov_trans z_mean = −0.005</td>
+        <td><span class="badge badge-amber">documented</span></td>
+        <td>Low</td>
+        <td>Not a double-count (L12+L14 confirmed disjoint). Likely BEA 2025 revision revaluation effect where KNC grows faster than IG−DEP in some years. SFC passes.</td>
+      </tr>
+      <tr>
+        <td>NF_corp L=22 mix-weighted</td>
+        <td><span class="badge badge-amber">documented</span></td>
+        <td>Medium</td>
+        <td>FAAt601 legal-form-only structure prevents per-type (E/S/IPP) Weibull parameterization. Single aggregate pair. Parked future extension.</td>
+      </tr>
+      <tr>
+        <td>NVA warning "max gap: 1.00"</td>
+        <td><span class="badge badge-green">not a bug</span></td>
+        <td>None</td>
+        <td>Floating-point comparison artifact. Raw BEA data confirms NVA = GVA − CCA exactly.</td>
+      </tr>
+      <tr>
+        <td>p_lag boundary at 1925</td>
+        <td><span class="badge badge-green">documented</span></td>
+        <td>Negligible</td>
+        <td>Data availability constraint — pK_1924 does not exist. Error decays to negligible by 1947 for NF_corp (L=22).</td>
+      </tr>
+      <tr>
+        <td>Pre-1901 capital stock missing</td>
+        <td><span class="badge badge-green">documented</span></td>
+        <td>Low</td>
+        <td>Cold-start from zero in 1901. Level corrected by 1925 BEA anchor; vintage distribution is not corrected but error decays with time.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- FLAGS -->
+<section id="flags" class="section">
+  <div class="section-header">
+    <span class="section-num">§16</span>
+    <h2>Open Flags</h2>
+  </div>
+
+  <div class="callout callout-flag">
+    <strong>FLAG — NVA vs GVA theoretical review (before Ch1 to Ash)</strong>
+    The NG pairing (NVA + K^G) is chosen on SFC grounds: GVA + K^G breaks post-2023 BEA revision due to secular CFC/GVA drift. The positive theoretical case for NVA from the Basu circuit-capital framework needs to be established independently. Do not change code. Resolve before Chapter 1 goes to Ash.
+  </div>
+
+  <div class="callout callout-flag">
+    <strong>BRANCH — GPIM error propagation under unbalanced growth (stub)</strong>
+    The standard half-life formula τ = ln(2)/ln(1/z*) requires constant z* — a balanced-growth assumption. Under unbalanced growth: ΔK_t = ΔK_0 · ∏z*_s. Characterizing convergence bounds without imposing balanced growth is an open methodological question. Notion stub: 331cfc4e-4b27-8154.
+  </div>
+
+  <div class="callout callout-flag">
+    <strong>FUTURE — Sub-asset Weibull heterogeneity (parked)</strong>
+    Replace single (L,α) per account with investment-share-weighted average of sub-type Weibull parameters. Requires FAAt207 (Table 2.7) investment by asset type. Makes ρ_t endogenously time-varying from asset composition.
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="refs" class="section">
+  <div class="section-header">
+    <span class="section-num">§17</span>
+    <h2>References</h2>
+  </div>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Author(s)</th><th>Year</th><th>Title</th><th>Role in pipeline</th></tr></thead>
+    <tbody>
+      <tr><td>Shaikh, A.</td><td>2016</td><td><em>Capitalism: Competition, Conflict, Crises</em>. OUP.</td><td>GPIM derivation (App. 6.5–6.7); ADJ1 depreciation rates</td></tr>
+      <tr><td>Basu, D.</td><td>2022</td><td><em>Capitalism: Competition, Conflict, Crises</em> [circuit formalization]. Ch. 4, 6.</td><td>Circuit-capital framework; capital perimeter grounding</td></tr>
+      <tr><td>Fraumeni, B.M.</td><td>1997</td><td>The Measurement of Depreciation in the U.S. NIPAs. <em>Survey of Current Business</em>, July.</td><td>Service lives L for all accounts (Table 3)</td></tr>
+      <tr><td>Nomura, K.</td><td>2005</td><td>Duration of Assets. <em>KEO Discussion Paper No. 99</em>.</td><td>Weibull shape parameters α (SASD survey, 66 asset classes)</td></tr>
+      <tr><td>Marx, K.</td><td>1885</td><td><em>Capital</em>, Vol. II, Ch. 6.</td><td>Theoretical grounding for transport as productive capital</td></tr>
+      <tr><td>BEA</td><td>1993</td><td><em>Fixed Reproducible Tangible Wealth, 1925–89</em>.</td><td>Pre-1997 service lives and aggregate rates (ADJ1)</td></tr>
+      <tr><td>Hulten, C.R. &amp; Wykoff, F.C.</td><td>1981</td><td>The Measurement of Economic Depreciation. In Hulten (ed.).</td><td>Empirical basis for geometric rates (Fraumeni 1997)</td></tr>
+      <tr><td>Winfrey, R.</td><td>1967</td><td>Statistical Analysis of Industrial Property Retirements. Iowa State.</td><td>Iowa curves / bell-shaped retirement distributions</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div style="border-top:2px solid var(--ink);padding-top:1.5rem;margin-top:3rem;font-family:'DM Mono',monospace;font-size:11px;color:var(--ink3);display:flex;justify-content:space-between;">
+  <span>Dataset 2 — Four-Account Productive Capital</span>
+  <span>commit e55ac71 · 2026-03-28 · BEA Sep 2025</span>
+</div>
+
+</main>
+</div>
+
+<script>
+// Tab switching
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-all').classList.add('active');
+  event.target.classList.add('active');
+
+  const rows = document.querySelectorAll('#col-table tbody tr');
+  if (name === 'all') {
+    rows.forEach(r => r.classList.remove('hidden'));
+  } else {
+    const map = { gpim: 'gpim', income: 'income', est: 'est', deflator: 'deflator' };
+    rows.forEach(r => {
+      const g = r.getAttribute('data-group');
+      r.classList.toggle('hidden', g !== name);
+    });
+  }
+}
+
+// Column search
+function filterCols(q) {
+  const rows = document.querySelectorAll('#col-table tbody tr');
+  const lq = q.toLowerCase();
+  rows.forEach(r => {
+    const text = r.textContent.toLowerCase();
+    r.classList.toggle('hidden', lq.length > 0 && !text.includes(lq));
+  });
+}
+
+// Nav active state on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>

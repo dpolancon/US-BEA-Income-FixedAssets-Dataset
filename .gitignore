@@ -1,0 +1,40 @@
+# ── R artifacts ──────────────────────────────────────
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+Rplots.pdf
+
+# ── LaTeX build artifacts ────────────────────────────
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.fdb_latexmk
+*.fls
+
+# ── Output data (large/reproducible) ────────────────
+output/**/*.rds
+output/**/*.RData
+output/Manifest/
+
+# ── Docs bundles ─────────────────────────────────────
+docs/**/*.zip
+docs/**/*.docx
+docs/essay_tex/*.tex
+docs/essay_tex/*.pdf
+
+
+# ── IDE ──────────────────────────────────────────────
+.vscode/
+
+# ── OS ───────────────────────────────────────────────
+.DS_Store
+
+data/interim/
+data/interim/**
+
+output/

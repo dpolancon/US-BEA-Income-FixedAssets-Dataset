@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"C:\\\\ReposGitHub\\\\Critical-Replication-Shaikh\\\\data\\\\raw\\\\shaikh_data\"\" 2>/dev/null || echo \"Directory check complete \")",
+      "Bash(ls -lh /c/ReposGitHub/Critical-Replication-Shaikh/data/raw/shaikh_data/*.xlsx)",
+      "Bash(Rscript codes/90_data_audit.R)",
+      "Bash(find /c/ReposGitHub/Critical-Replication-Shaikh/output -type f -name *audit*)",
+      "Bash(awk -F, '{print NF}')",
+      "Bash(Rscript -e ':*)"
+    ]
+  }
+}
