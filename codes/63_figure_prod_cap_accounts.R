@@ -41,7 +41,7 @@ if (file.exists(long_path)) {
 }
 
 ## Output directory
-fig_dir <- "output/CriticalReplication/figures_prod_cap"
+fig_dir <- "output/figures_prod_cap"
 dir.create(fig_dir, showWarnings = FALSE, recursive = TRUE)
 
 ## Account palette (colorblind-safe Okabe-Ito)
@@ -159,44 +159,33 @@ if (!is.null(accounts_long)) {
 
 
 ## ==================================================================
-## Figure 4: z (Depreciation) and rho (Retirement) by Account
+## Figure 4: Time-varying retirement rate rho — NF corporate
 ## ==================================================================
 
 if (!is.null(accounts_long)) {
   fig4_data <- accounts_long |>
-    dplyr::filter(year %in% est_years,
-                  account %in% c("NF_corp", "gov_trans")) |>
-    dplyr::select(year, account, z, rho) |>
-    tidyr::pivot_longer(c(z, rho), names_to = "rate_type", values_to = "rate") |>
-    dplyr::mutate(
-      account = dplyr::case_when(
-        account == "NF_corp"   ~ "NF Corporate",
-        account == "gov_trans" ~ "Gov Transport",
-        TRUE ~ account
-      ),
-      rate_type = dplyr::case_when(
-        rate_type == "z"   ~ "Depreciation rate (z)",
-        rate_type == "rho" ~ "Retirement rate (rho)",
-        TRUE ~ rate_type
-      )
-    )
+    dplyr::filter(account == "NF_corp")
 
-  fig4 <- ggplot(fig4_data, aes(x = year, y = rate, color = account)) +
-    geom_line(linewidth = 0.7) +
-    facet_wrap(~ rate_type, ncol = 1, scales = "free_y") +
-    scale_color_manual(values = ACCT_COLORS[c("NF Corporate", "Gov Transport")]) +
+  rho_ss <- 0.04555
+
+  fig4 <- ggplot(fig4_data, aes(x = year, y = rho)) +
+    geom_line(color = ACCT_COLORS["NF Corporate"], linewidth = 0.7) +
+    geom_hline(yintercept = rho_ss, linetype = "dashed", color = "grey40") +
+    annotate("text", x = min(fig4_data$year) + 5, y = rho_ss + 0.002,
+             label = sprintf("rho[ss] == %.5f", rho_ss), parse = TRUE,
+             size = 3.2, color = "grey30") +
     labs(
-      title    = "Depreciation and Retirement Rates by Account",
-      subtitle = "z = DEP/(pK * KNR_lag), rho = Weibull steady-state average",
-      x = NULL, y = "Rate",
-      caption  = "Source: GPIM derivation from BEA Fixed Assets"
+      title   = "Time-varying retirement rate \u2014 NF corporate (1929\u20132024)",
+      x       = NULL,
+      y       = expression("Annual retirement rate " * rho),
+      caption = "Source: GPIM derivation from BEA Fixed Assets"
     ) +
     theme_ch3()
 
   save_png_pdf_dual(fig4, "fig04_z_rho_by_account", fig_dir,
-                    width = 7, height = 7)
+                    width = 7, height = 5)
 } else {
-  message("  Skipping Figure 4: accounts_long.csv not found")
+  message("  Skipping Figure 4: accounts_long not found")
 }
 
 
