@@ -1,0 +1,5 @@
+"variable","identity","max_gap_year","max_gap","max_abs_gap","tolerance","pass"
+"K_gross_real","inherited TOTAL_PRODUCTIVE K_gross_real minus ME + NRC K_gross_real",2016,7.45058059692383e-08,7.45058059692383e-08,1e-06,TRUE
+"K_gross_cc","inherited TOTAL_PRODUCTIVE K_gross_cc minus ME + NRC K_gross_cc",2012,-8.5681676864624e-08,8.5681676864624e-08,1e-06,TRUE
+"IG_real","inherited TOTAL_PRODUCTIVE IG_real minus ME + NRC IG_real",2008,9.31322574615479e-10,9.31322574615479e-10,1e-06,TRUE
+"IG_cc","inherited TOTAL_PRODUCTIVE IG_cc minus ME + NRC IG_cc",1925,0,0,1e-06,TRUE
