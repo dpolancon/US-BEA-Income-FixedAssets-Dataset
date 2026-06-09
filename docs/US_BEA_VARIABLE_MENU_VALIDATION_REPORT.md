@@ -17,6 +17,8 @@ Live BEA snapshots were staged for download date(s): 2026-06-09. Raw snapshots a
 4. IPP and GOV_TRANS preserved as frontier conditioners and excluded from preferred `K_cap`: **PASS**.
 5. ME and NRC tagged `direct_productive_capacity_capital`: **PASS**.
 6. Required NIPA Table 7.11 lines present: **PASS**.
+   Shaikh formula semantic admissibility: **BLOCKED**.
+   Staged T711 rows prove presence and provenance only; the semantic audit does not validate the formula roles.
 7. NFC, CORP, FIN, and GOV_TRANS boundaries represented: **PASS**.
 8. Official BEA real/price indexes diagnostic rather than GPIM outputs: **PASS**.
 9. Downstream analytical ownership documented: **PASS**.
@@ -150,7 +152,8 @@ Live BEA snapshots were staged for download date(s): 2026-06-09. Raw snapshots a
 
 - Preferred private productive-capacity capital is `K_cap = K_ME + K_NRC`.
 - IPP and government transportation assets remain staged frontier conditioners.
-- The preferred transformation object is `theta(e_t | IPP_t, GOV_TRANS_t)`.
+- The preferred transformation object is `theta(omega_t | IPP_t, GOV_TRANS_t)`.
+- Wage share is the preferred downstream distributive state; exploitation rate is an alternative proxy.
 - The additive alternative `g_Yp = theta*g_Kcap + psi*g_IPP + gamma*g_GOV_TRANS` is not implemented.
 - Official BEA quantity and price indexes are diagnostics, not binding GPIM products.
 - Gross stock, retirements, revaluation, separate transfer receipts/payments, and separate dividend flows are not imputed here.
@@ -166,18 +169,33 @@ ME-NRC composition, IPP treatment, and GOV_TRANS frontier conditioning.
 
 ## Handoff to Capacity-Utilization-US_Chile
 
-The downstream analytical repository should construct:
+The downstream analytical repository may import:
+
+- the staged T711 candidate lines
+- `data/metadata/us_bea_shaikh_candidate_line_semantic_audit.csv`
+- `docs/US_BEA_SHAIKH_LINE_SEMANTIC_AUDIT.md`
+
+It must not construct the following until a documented historical/current semantic crosswalk validates the formula roles:
+
+- `BankMonIntPaid`
+- `CorpNFNetImpIntPaid`
+- `CorpImpIntAdj_t`
+- Shaikh-adjusted value added
+- Shaikh-adjusted operating surplus
+- Shaikh-adjusted distributive variables
+
+Non-Shaikh downstream work may proceed in later bounded passes, including:
 
 - `K_G_NFC_ME_GPIM`, `K_G_NFC_NRC_GPIM`, `K_G_NFC_KCAP_GPIM`
 - `K_N_NFC_ME_GPIM`, `K_N_NFC_NRC_GPIM`, `K_N_NFC_KCAP_GPIM`
 - `P_K_NFC_ME_GPIM`, `P_K_NFC_NRC_GPIM`, `IPP_NFC_GPIM`, `GOV_TRANS_GPIM`
-- `pi_adj_CORP`, `omega_adj_CORP`, `e_adj_CORP`, `ln_e_adj_CORP`
-- `pi_adj_NFC`, `omega_adj_NFC`, `e_adj_NFC`, `ln_e_adj_NFC`
-- `e_x_Kcap`, `e_x_ME`, `e_x_NRC`, `e_x_ME_NRC_gap`
+- preferred wage-share interactions: `omega_x_Kcap`, `omega_x_ME`, `omega_x_NRC`, `omega_x_ME_NRC_gap`
+- alternative exploitation-rate proxies: `e_x_Kcap`, `e_x_ME`, `e_x_NRC`, `e_x_ME_NRC_gap`
 - `source_provenance_ledger`
 
 These are not final products of this provider repository. The downstream repo owns
-GPIM, Shaikh-style corrections, interaction variables, admissibility ledgers, and S10/S20/S30.
+GPIM, interaction variables, admissibility ledgers, and S10/S20/S30.
+Shaikh-style adjusted construction remains blocked by the semantic audit.
 
 ## Hard Checks
 

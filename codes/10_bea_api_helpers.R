@@ -402,14 +402,14 @@ provider_manifest <- function() {
   }
 
   imputed_lines <- list(
-    list(4, "BankMonIntPaid_paid_financial", "BankMonIntPaid"),
-    list(44, "BankMonIntPaid_paid_banks_credit_investment", "BankMonIntPaid"),
-    list(73, "BankMonIntPaid_received_federal", "BankMonIntPaid"),
-    list(28, "BankMonIntPaid_received_financial", "BankMonIntPaid"),
-    list(52, "BankMonIntPaid_paid_state_local", "BankMonIntPaid"),
-    list(91, "BankMonIntPaid_paid_government", "BankMonIntPaid"),
-    list(74, "CorpNFNetImpIntPaid_line74", "CorpNFNetImpIntPaid"),
-    list(53, "CorpNFNetImpIntPaid_line53", "CorpNFNetImpIntPaid")
+    list(4, "BankMonIntPaid_paid_financial"),
+    list(44, "BankMonIntPaid_paid_banks_credit_investment"),
+    list(73, "BankMonIntPaid_received_federal"),
+    list(28, "BankMonIntPaid_received_financial"),
+    list(52, "BankMonIntPaid_paid_state_local"),
+    list(91, "BankMonIntPaid_paid_government"),
+    list(74, "CorpNFNetImpIntPaid_line74"),
+    list(53, "CorpNFNetImpIntPaid_line53")
   )
   for (item in imputed_lines) {
     add(
@@ -418,9 +418,14 @@ provider_manifest <- function() {
       if (item[[1]] %in% c(4, 28, 44)) "FIN" else "CORP_FIN_BOUNDARY",
       "not_applicable", "imputed_interest",
       "Millions of current dollars", "current_cost", "interest_flow",
-      "shaikh_imputed_interest_ingredient", "required", item[[3]],
+      "shaikh_candidate_line_ingredient", "required",
+      "shaikh_candidate_semantic_audit_only",
       "staged",
-      "Line number is locked by the provider contract; preserve the returned BEA description and vintage.",
+      paste(
+        "Candidate Shaikh-line ingredient only. Staged with provenance.",
+        "Not semantically admissible for CorpImpIntAdj_t construction until",
+        "historical/current crosswalk validation passes."
+      ),
       "nipa_t7011.csv"
     )
   }
@@ -497,7 +502,9 @@ write_locked_manifest <- function(manifest = provider_manifest(),
       provider_role = "BEA/NIPA/Fixed Assets ingredient provider only",
       analytical_authority = "Capacity-Utilization-US_Chile",
       preferred_K_cap = "K_ME + K_NRC",
-      preferred_theta = "theta(e_t | IPP_t, GOV_TRANS_t)",
+      preferred_theta = "theta(omega_t | IPP_t, GOV_TRANS_t)",
+      preferred_distributive_state = "wage share (omega_t)",
+      alternative_distributive_proxy = "exploitation rate (e_t)",
       variables = manifest
     ),
     json_path, pretty = TRUE, auto_unbox = TRUE, na = "null"

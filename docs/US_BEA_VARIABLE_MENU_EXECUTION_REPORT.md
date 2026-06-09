@@ -77,9 +77,11 @@ they require transparent CORP/NFC differencing or another verified source.
 
 ## Downstream Next Step
 
-In `Capacity-Utilization-US_Chile`, ingest
-`data/staged/us_bea_variable_menu_long.csv` together with
-`data/metadata/us_bea_source_provenance_ledger.csv`. Build the GPIM,
-Shaikh-adjusted income, distributive, interaction, frontier-conditioning, and
-S10/S20/S30 objects there. Do not move those analytical constructions back
-into this provider repository.
+The downstream repo should import the provider menu, provenance ledger, staged
+long file, and Shaikh semantic audit. GPIM and non-Shaikh source-of-truth
+construction may proceed in later bounded passes. Shaikh-style adjusted income
+construction is blocked until the semantic crosswalk validates the Table 7.11
+formula roles.
+
+The downstream source-of-truth design prefers wage share as the distributive
+state variable. Exploitation rate is retained only as an alternative proxy.

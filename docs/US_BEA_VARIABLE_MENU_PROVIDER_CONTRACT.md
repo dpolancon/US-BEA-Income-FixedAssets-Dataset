@@ -29,8 +29,12 @@ K_cap = K_ME + K_NRC
 Preferred transformation object:
 
 ```text
-theta_t = theta(e_t | IPP_t, GOV_TRANS_t)
+theta_t = theta(omega_t | IPP_t, GOV_TRANS_t)
 ```
+
+The wage share is the preferred distributive state variable downstream. The
+exploitation rate is retained only as an alternative proxy for distributive
+conditions.
 
 The provider must not encode:
 
@@ -93,25 +97,23 @@ from net lines.
 
 ## Imputed-Interest Lock
 
-The provider stages NIPA Table 7.11 lines:
+The provider stages these candidate NIPA Table 7.11 lines with provenance:
 
 ```text
 L4, L44, L73, L28, L52, L91, L74, L53
 ```
 
-They support downstream construction of:
-
-```text
-BankMonIntPaid =
-  (L4 + L44 + L73) - (L28 + L52 + L91)
-
-CorpNFNetImpIntPaid = L74 - L53
-
-CorpImpIntAdj = -BankMonIntPaid - CorpNFNetImpIntPaid
-```
+They are candidate Shaikh-line ingredients only.
 
 The provider does not construct adjusted value added, operating surplus,
 profit shares, wage shares, or exploitation ratios.
+
+Line-number existence is not sufficient for Shaikh-style correction
+admissibility. The current provider package stages the eight candidate lines
+with provenance, but downstream construction of `BankMonIntPaid`,
+`CorpNFNetImpIntPaid`, `CorpImpIntAdj_t`, and all Shaikh-adjusted derivatives
+is blocked until a documented historical/current semantic crosswalk validates
+the formula roles.
 
 ## Data Products
 
