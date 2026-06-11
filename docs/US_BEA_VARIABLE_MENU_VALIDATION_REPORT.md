@@ -1,6 +1,6 @@
 # U.S. BEA Variable Menu Validation Report
 
-**Run date:** 2026-06-09
+**Run date:** 2026-06-11
 
 ## Scope
 
