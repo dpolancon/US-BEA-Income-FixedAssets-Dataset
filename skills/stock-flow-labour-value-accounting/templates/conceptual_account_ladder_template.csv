@@ -1,0 +1,2 @@
+object_name,sector_boundary,legal_form_boundary,accounting_ladder_position,formal_definition,net_of,not_net_of,not_equivalent_to,flow_direction_logic,decomposition_role,financial_power_claim,notes
+corporate_profits,corporate,corporate,profit decomposition,Corporate profits with inventory valuation and capital consumption adjustments,operating costs and relevant deductions by NIPA definition,GVA GOS NOS,NOS; GOS; GVA,not_applicable,downstream profit-type decomposition of NOS,mixed_review,Example row; do not add corporate profits to NOS.

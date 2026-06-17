@@ -1,0 +1,2 @@
+boundary_id,boundary_name,included_units,excluded_units,BEA_NIPA_legal_form_basis,Shaikh_Tonak_theoretical_status,productive_value_claim_allowed,commercial_capital_blur,financial_power_claim,notes
+BOUNDARY_NFC,Nonfinancial corporate sector,nonfinancial domestic corporate business,financial corporate; noncorporate; household; government,NIPA nonfinancial corporate legal-form branch,closer to productive corporate boundary but still legal/accounting,restricted,review,not_applicable,Example row; baseline status does not authorize adjusted Shaikh objects.

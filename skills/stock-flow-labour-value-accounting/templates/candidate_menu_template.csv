@@ -1,0 +1,2 @@
+candidate_id,candidate_formula,sector_boundary,candidate_status,allowed_use,prohibited_use,financial_power_claim,reason
+CORP_IMPUTED_INTEREST_ADJ,-FC_NET_INT_PAID_CANDIDATE - NFC_NET_IMPUTED_INT_PAID_CANDIDATE,corporate,DOCUMENTATION_AND_RECONCILIATION_CANDIDATE,documentation; reconciliation; candidate menu,construction; handoff; regression; baseline,correction_ingredient_only,Example row; expected current status for Shaikh corporate adjustment.

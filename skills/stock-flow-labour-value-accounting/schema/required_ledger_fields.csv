@@ -1,0 +1,41 @@
+ledger_name,required_field,field_meaning,allowed_values_if_applicable,why_required
+conceptual_account_ladder_ledger,object_name,Name of conceptual object,free text,Identifies the account object being classified.
+conceptual_account_ladder_ledger,net_of,What the object is net of,free text,Prevents confusing GVA GOS NOS profits and interest.
+conceptual_account_ladder_ledger,not_net_of,What the object is not net of,free text,Documents excluded deductions.
+conceptual_account_ladder_ledger,not_equivalent_to,Objects this object must not be treated as,free text,Blocks category substitution.
+conceptual_account_ladder_ledger,flow_direction_logic,Direction rule for paid received net or residual flows,free text,Required for net interest and imputed-interest candidates.
+conceptual_account_ladder_ledger,decomposition_role,Role in account decomposition,free text,Separates parent accounts from profit or property-income decompositions.
+conceptual_account_ladder_ledger,financial_power_claim,Finance-related claim classification,"not_applicable;claim_on_surplus;monopoly_power_channel;transfer_appropriation_channel;correction_ingredient_only;mixed_review",Prevents treating financial flows as productive value by default.
+sector_boundary_ledger,boundary_id,Stable boundary identifier,free text,Links candidates to sector definitions.
+sector_boundary_ledger,boundary_name,Readable sector boundary name,free text,Documents BEA/NIPA or theoretical boundary.
+sector_boundary_ledger,included_units,Units included,free text,Prevents silent aggregation.
+sector_boundary_ledger,excluded_units,Units excluded,free text,Prevents boundary drift.
+sector_boundary_ledger,productive_value_claim_allowed,Whether productive-value claim is allowed,"yes;no;restricted",Makes productive/nonproductive stance explicit.
+sector_boundary_ledger,financial_power_claim,Finance-related claim classification,"not_applicable;claim_on_surplus;monopoly_power_channel;transfer_appropriation_channel;correction_ingredient_only;mixed_review",Documents finance/banking treatment by boundary.
+stock_flow_consistency_gate,candidate_id,Stable candidate identifier,free text,Connects gate result to candidate menu.
+stock_flow_consistency_gate,candidate_formula,Formula or conceptual formula,free text,Shows what must preserve the ladder.
+stock_flow_consistency_gate,accounting_ladder_position,Position in GVA GOS NOS ladder,"GVA;GOS;NOS;restoration term;whole operating ladder;invalid;free text",Tests stock-flow coherence.
+stock_flow_consistency_gate,required_identity,Identity that must hold,free text,States the accounting law being checked.
+stock_flow_consistency_gate,stock_flow_consistency_gate,Gate result,"PASS;REVIEW;FAIL",Controls candidate status.
+stock_flow_consistency_gate,reason,Reason for gate result,free text,Supports auditability.
+double_accounting_gate,candidate_id,Stable candidate identifier,free text,Connects gate result to candidate menu.
+double_accounting_gate,candidate_formula,Formula or conceptual formula,free text,Shows flows at risk.
+double_accounting_gate,involved_sectors,Sectors involved,free text,Shows transfer mirror risks.
+double_accounting_gate,involved_flows,Flows involved,free text,Identifies repeated flows.
+double_accounting_gate,financial_power_claim,Finance-related claim classification,"not_applicable;claim_on_surplus;monopoly_power_channel;transfer_appropriation_channel;correction_ingredient_only;mixed_review",Prevents financial receipts becoming productive-value additions.
+double_accounting_gate,double_accounting_gate,Gate result,"PASS;REVIEW;FAIL",Controls candidate status.
+double_accounting_gate,reason,Reason for gate result,free text,Supports auditability.
+candidate_menu,candidate_id,Stable candidate identifier,free text,Primary menu key.
+candidate_menu,candidate_formula,Formula or conceptual formula,free text,Documents object.
+candidate_menu,candidate_status,Current candidate status,"READY_AS_BASELINE;READY_AS_ROBUSTNESS_CANDIDATE;DOCUMENTATION_AND_RECONCILIATION_CANDIDATE;THEORETICALLY_MIXED_REVIEW_REQUIRED;BLOCKED_DOUBLE_COUNTING_RISK;BLOCKED_STOCK_FLOW_INCONSISTENT",Controls allowed use.
+candidate_menu,allowed_use,Permitted uses,free text,Prevents overuse.
+candidate_menu,prohibited_use,Forbidden uses,free text,Prevents construction or handoff when not authorized.
+candidate_menu,financial_power_claim,Finance-related claim classification,"not_applicable;claim_on_surplus;monopoly_power_channel;transfer_appropriation_channel;correction_ingredient_only;mixed_review",Keeps finance treatment visible.
+line_matching_readiness_ledger,conceptual_account,Conceptual object to match,free text,Separates concept search from label search.
+line_matching_readiness_ledger,BEA_candidate,BEA table line or metadata candidate,free text,Records operational terrain.
+line_matching_readiness_ledger,readiness,Readiness status,"ready;partial;review;rejected;free text",Prevents line matches from becoming automatic authorization.
+line_matching_readiness_ledger,conceptual_gate_status,Conceptual gate status,free text,Connects line matching to theory checks.
+graduation_criteria_ledger,criterion_id,Stable criterion identifier,free text,Tracks graduation requirements.
+graduation_criteria_ledger,required_criterion,Required criterion,free text,States what must happen before use.
+graduation_criteria_ledger,met_in_this_pass,Whether criterion is met,"yes;no;partial",Blocks premature graduation.
+graduation_criteria_ledger,notes,Audit notes,free text,Documents residual risk.

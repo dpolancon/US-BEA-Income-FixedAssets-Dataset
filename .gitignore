@@ -27,6 +27,9 @@ docs/**/*.docx
 docs/essay_tex/*.tex
 docs/essay_tex/*.pdf
 
+# Local source PDFs used for research/context; do not commit
+docs/*.pdf
+
 
 # ── IDE ──────────────────────────────────────────────
 .vscode/
