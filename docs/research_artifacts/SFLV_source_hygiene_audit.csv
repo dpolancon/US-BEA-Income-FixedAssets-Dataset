@@ -1,0 +1,25 @@
+section_or_claim,issue_type,source_layer,risk_level,recommended_action,keep_rewrite_drop,notes
+Executive summary: protocol rather than closed Shaikh series,source_grounded,S20E-CL-PATCH and Skill schema,low,Keep and translate into dissertation-facing protocol language,keep,Consistent with no-construction final decision.
+Executive summary: stock-flow ladder before BEA/NIPA line matching,source_grounded,S20E-CL-PATCH,low,Keep as governing method,keep,Matches Skill and validation ledgers.
+SNA operating surplus grammar,citation_cleanup_needed,SNA/official accounting operational terrain,medium,Retain as official-accounting context but remove raw web citation tokens,rewrite,Operational terrain does not become theoretical authority.
+FISIM margin and sector allocation,citation_cleanup_needed,SNA/financial-production official accounting,medium,Retain as official-accounting caution without treating FISIM as labour-value productive value,rewrite,Use as workflow caution and financial_intermediation_imputation_gate support.
+Seven-ledger artifact claim,source_grounded,S20E-CL-PATCH outputs,low,Keep but express as provider-side documentation structure,keep,Ledgers exist in S20E-CL output and Skill schema.
+Shaikh/Tonak productive and unproductive distinction,source_grounded,Shaikh and Tonak theoretical inspiration,medium,Keep concise and avoid public-web generalizations,keep,Do not quote or overstate theory.
+Public web references to debates and reviews,qwen_requires_validation,Qwen/deep-research synthesis,medium,Drop as authority and treat only as hypothesis/background pointer,drop,Raw report includes search-style citations that are not dissertation-ready.
+Claim that added finance interpretation is thesis-specific monopoly-power layer,overclaim,Deep-research synthesis,medium,Downgrade to possible interpretation channel requiring validation,rewrite,Keep financial_power_claim categories without asserting final theory.
+Account ladder GVA -> GOS -> NOS -> decompositions,source_grounded,S20E-CL-PATCH and official accounting grammar,low,Keep and make central,keep,Required by Skill and CL-PATCH.
+Mermaid diagrams,copyright_quote_risk,Deep-research synthesis,low,Do not copy diagrams; rewrite in prose or simple ASCII ladder,rewrite,No long copyrighted quote issue but avoid raw dump style.
+Table stating GVA/GOS/NOS net-of relationships,source_grounded,S20E-CL-PATCH and official accounting terrain,low,Keep in prose definitions,rewrite,Clarify NOS is not after-interest profit.
+Restoration formulas written as GVA_adj/GOS_adj/NOS_adj,overclaim,S20E-CL-PATCH candidate bundle,medium,Describe conceptually as candidate bundle only; do not present as construction recipe,rewrite,Preserve no-construction decision.
+R code snippets for BEA API and validation,overclaim,Deep-research synthesis,medium,Drop executable snippets from polished artifact,drop,Polished note is not a construction or implementation pass.
+BEA API method names GetParameterList/GetParameterValues/GetData,source_grounded,BEA API operational rules,low,Keep as metadata-first workflow language,keep,Do not search Shaikh acronyms as variables.
+Appendix 6.7 to current BEA candidates table,line_number_mechanical_risk,Appendix benchmark plus S20E current-release review,medium,Keep concept map but remove any line-number recipe reading,rewrite,Current-release line matching requires conceptual review.
+Use of T71100 as plausible current-release search terrain,line_number_mechanical_risk,BEA/NIPA operational terrain,medium,State as candidate-level review terrain only,rewrite,No mechanical old line carry-forward.
+Financial corporate receipts/productive value distinction,finance_productive_value_risk,S20E-CL-PATCH and Skill,low,Keep as blocked-risk rule,keep,Finance/banking not productive capital in this protocol.
+Corporate adjusted object not pure productive surplus value,source_grounded,S20E-CL-PATCH candidate menu,low,Keep,keep,Matches blocked productive surplus whole-sector negative control.
+Business-wide objects remain mixed due to commercial capital,commercial_capital_blur,S20E-CL-PATCH and Skill,low,Keep and flag as limitation,keep,Do not silently solve commercial capital.
+Ledger and template field lists,citation_cleanup_needed,Skill/schema outputs,low,Summarize rather than dump raw schema lists,rewrite,Detailed schemas live in Skill folder.
+Candidate statuses list,source_grounded,Skill schema,low,Keep unchanged,keep,No status changes allowed.
+Current classification of NFC baseline and Shaikh candidates,source_grounded,S20E-CL-PATCH candidate menu,low,Keep unchanged,keep,Preserve documentation/reconciliation status.
+Conclusion as BEA fetch plus translation plus gates plus review,source_grounded,S20E-CL-PATCH and Skill,low,Keep but remove web-style citation tokens,rewrite,Good dissertation-facing conclusion after cleanup.
+Raw file citation markers and turn IDs,citation_cleanup_needed,Raw deep-research artifact,high,Remove from polished artifact and replace with source-layer statements,drop,Tokens are not stable dissertation citations.
