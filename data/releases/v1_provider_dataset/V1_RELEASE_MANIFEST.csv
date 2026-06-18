@@ -1,0 +1,11 @@
+file_name,relative_path,file_type,row_count,description,tracked_intent,notes
+README.md,data/releases/v1_provider_dataset/README.md,md,,Release folder overview,yes,V1 provider release artifact; no downstream import performed.
+V1_SOURCE_PANEL_LONG.csv,data/releases/v1_provider_dataset/V1_SOURCE_PANEL_LONG.csv,csv,9447,Long-form provider source panel plus S20E metadata/status rows,yes,V1 provider release artifact; no downstream import performed.
+V1_VARIABLE_MENU.csv,data/releases/v1_provider_dataset/V1_VARIABLE_MENU.csv,csv,184,Provider variable and candidate menu,yes,V1 provider release artifact; no downstream import performed.
+V1_CONCEPT_REGISTRY.csv,data/releases/v1_provider_dataset/V1_CONCEPT_REGISTRY.csv,csv,30,Concept registry from S20E-CL ladder and sector ledgers,yes,V1 provider release artifact; no downstream import performed.
+V1_SOURCE_METADATA_LEDGER.csv,data/releases/v1_provider_dataset/V1_SOURCE_METADATA_LEDGER.csv,csv,182,Provider provenance and S20E line matching metadata,yes,V1 provider release artifact; no downstream import performed.
+V1_CANDIDATE_STATUS_LEDGER.csv,data/releases/v1_provider_dataset/V1_CANDIDATE_STATUS_LEDGER.csv,csv,10,Candidate status and construction/handoff permissions,yes,V1 provider release artifact; no downstream import performed.
+V1_BLOCKED_PARKED_LEDGER.csv,data/releases/v1_provider_dataset/V1_BLOCKED_PARKED_LEDGER.csv,csv,14,Blocked and parked object ledger,yes,V1 provider release artifact; no downstream import performed.
+V1_DOWNSTREAM_CONSUMPTION_CONTRACT.md,data/releases/v1_provider_dataset/V1_DOWNSTREAM_CONSUMPTION_CONTRACT.md,md,,Future Chapter 2 consumption contract,yes,V1 provider release artifact; no downstream import performed.
+V1_VALIDATION_CHECKS.csv,data/releases/v1_provider_dataset/V1_VALIDATION_CHECKS.csv,csv,18,Release validation checks,yes,V1 provider release artifact; no downstream import performed.
+V1_RELEASE_NOTES.md,data/releases/v1_provider_dataset/V1_RELEASE_NOTES.md,md,,Release notes,yes,V1 provider release artifact; no downstream import performed.

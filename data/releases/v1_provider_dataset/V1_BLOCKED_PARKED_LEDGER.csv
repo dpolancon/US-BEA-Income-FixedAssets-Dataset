@@ -1,0 +1,15 @@
+object_id,status,reason,what_would_be_required_to_unblock,allowed_current_use,prohibited_current_use,notes
+ADJUSTED_SHAIKH_CORPORATE_GVA,parked,Adjusted Shaikh corporate GVA is not constructed in V1.,"Human review, passed gates, explicit downstream authorization.",documentation only,construction; handoff; regression; baseline use,S20E remains documentation/reconciliation.
+ADJUSTED_SHAIKH_CORPORATE_GOS,parked,Adjusted Shaikh corporate GOS is not constructed in V1.,Human review and account ladder validation.,documentation only,construction; handoff; regression,No series built.
+ADJUSTED_SHAIKH_CORPORATE_NOS,parked,Adjusted Shaikh corporate NOS is not constructed in V1.,Human review and double-accounting validation.,documentation only,construction; adjusted profit claim,No series built.
+CORP_IMPUTED_INTEREST_ADJ,documentation_reconciliation_candidate,S20E candidate only; not graduated.,Passed human review and construction authorization.,candidate menu documentation,time-series construction; handoff; model input,can_construct_now=no; can_handoff_now=no.
+BUSINESS_WIDE_SHAIKH_OBJECTS,theoretically_mixed,Commercial capital and noncorporate boundary blur unresolved.,Explicit boundary resolution and human review.,documentation and theory review,construction; baseline replacement,THEORETICALLY_MIXED_REVIEW_REQUIRED.
+OLD_APPENDIX_6_7_LINE_REPLICATION,blocked,Historical line numbers cannot be mechanically reused.,Current BEA metadata concept review.,negative-control documentation,mechanical line-number replication,Use concepts not Shaikh labels or old lines.
+QWEN_HOUSING_PROXY_PATHS,blocked,Qwen proxy paths are subordinate hypotheses and outside corporate Appendix correction.,Primary-source validation and scope authorization.,source-hygiene audit only,construction; handoff; baseline,No Qwen authority.
+SHINY_APP,parked,V1 is dataset release not app pass.,Separate app task and authorization.,schema planning only,app implementation,No Shiny files created.
+POST_S20_CHAPTER2_STAGES,parked,Chapter 2 stages are future downstream pass.,Separate Chapter 2 import task.,contract documentation,touching Chapter 2 repo,No Chapter 2 access.
+ACCUMULATED_Q,parked,Out of provider V1 scope.,Downstream authorization after source-of-truth build.,none,construction,No accumulated q constructed.
+PRODUCTIVE_CAPACITY,parked,Out of provider V1 scope.,Downstream authorization after source-of-truth build.,none,construction,No productive capacity constructed.
+UTILIZATION,parked,Out of provider V1 scope.,Downstream authorization after source-of-truth build.,none,construction,No utilization constructed.
+THETA_ECONOMETRICS,parked,Out of provider V1 scope.,Separate econometric stage authorization.,none,theta estimation; regressions,No econometrics run.
+GPIM_RECONSTRUCTION,parked,Out of provider V1 scope.,Separate GPIM reconstruction authorization.,none,GPIM reconstruction,No GPIM reconstructed.
